@@ -1,0 +1,17 @@
+cluster:
+  name: weave-cluster
+  privateKey: cluster-key
+machines:
+- count: 3
+  spec:
+    image: footloose-ubuntu-20.04
+    name: node-%d
+    portMappings:
+    - containerPort: 22
+      hostPort: 2222
+    - containerPort: 6443
+      hostPort: 6443
+    privileged: true
+    volumes:
+    - type: volume
+      destination: /var/lib/docker

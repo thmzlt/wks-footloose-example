@@ -1,0 +1,74 @@
+apiVersion: cluster.x-k8s.io/v1alpha3
+kind: Machine
+metadata:
+  labels:
+    set: master
+  name: master-1
+spec:
+  clusterName: weave-cluster
+  infrastructureRef:
+    apiVersion: cluster.weave.works/v1alpha3
+    kind: ExistingInfraMachine
+    name: master-1-provider
+---
+apiVersion: cluster.weave.works/v1alpha3
+kind: ExistingInfraMachine
+metadata:
+  name: master-1-provider
+spec:
+  private:
+    address: 172.17.0.2
+    port: 22
+  public:
+    address: 127.0.0.1
+    port: 2222
+---
+apiVersion: cluster.x-k8s.io/v1alpha3
+kind: Machine
+metadata:
+  labels:
+    set: worker
+  name: worker-1
+spec:
+  clusterName: weave-cluster
+  infrastructureRef:
+    apiVersion: cluster.weave.works/v1alpha3
+    kind: ExistingInfraMachine
+    name: worker-1-provider
+---
+apiVersion: cluster.weave.works/v1alpha3
+kind: ExistingInfraMachine
+metadata:
+  name: worker-1-provider
+spec:
+  private:
+    address: 172.17.0.3
+    port: 22
+  public:
+    address: 127.0.0.1
+    port: 2223
+---
+apiVersion: cluster.x-k8s.io/v1alpha3
+kind: Machine
+metadata:
+  labels:
+    set: worker
+  name: worker-2
+spec:
+  clusterName: weave-cluster
+  infrastructureRef:
+    apiVersion: cluster.weave.works/v1alpha3
+    kind: ExistingInfraMachine
+    name: worker-2-provider
+---
+apiVersion: cluster.weave.works/v1alpha3
+kind: ExistingInfraMachine
+metadata:
+  name: worker-2-provider
+spec:
+  private:
+    address: 172.17.0.4
+    port: 22
+  public:
+    address: 127.0.0.1
+    port: 2223
